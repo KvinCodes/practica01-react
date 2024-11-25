@@ -8,9 +8,9 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-        <Navbar/>
+        <Navbar />
         <Router />
-        <Footer/>
+        <Footer />
       </BrowserRouter>
     </div>
   );
