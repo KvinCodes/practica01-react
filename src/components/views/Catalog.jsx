@@ -1,6 +1,18 @@
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Catalog = () => {
+
+  const apiUrl = "http://localhost/products/api.php";
+  let config = {
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+  };
+
+  
+
   return (
     <section className="text-gray-400 bg-gray-900 body-font">
       <div className="p-4">
