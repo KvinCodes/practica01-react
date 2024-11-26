@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useEffect } from "react";
 
 const Catalog = () => {
 
@@ -11,7 +12,14 @@ const Catalog = () => {
     },
   };
 
-  
+  const getAllProducts = async () => {
+    const res = axios.get(`${apiUrl}/products`, config);
+    console.log(res);
+  }
+
+  useEffect(() => {
+    getAllProducts();
+  }, []);
 
   return (
     <section className="text-gray-400 bg-gray-900 body-font">
