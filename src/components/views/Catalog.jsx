@@ -7,6 +7,7 @@ const Catalog = () => {
 
   const [data, setData] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [id, setId] = useState(0);
 
   const apiUrl = "http://localhost/products/api.php";
   let config = {
@@ -45,14 +46,17 @@ const Catalog = () => {
                 <h2 className="text-white title-font text-lg font-medium">{item.nombre}</h2>
                 <p className="mt-1">{item.precio}</p>
               </div>
-              <button className="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg" onClick={() => setShowModal(true)}>Editar</button>
+              <button className="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg" onClick={() => {
+                setShowModal(true);
+                setId(item.id);
+              }}>Editar</button>
             </div>
           })
           };
 
         </div>
       </div>
-        { showModal && <ModalEditProduct setShowModal={setShowModal} /> }
+        { showModal && <ModalEditProduct id={id} setShowModal={setShowModal} getAllProducts={getAllProducts} /> }
     </section>
   );
 };

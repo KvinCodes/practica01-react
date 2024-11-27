@@ -1,4 +1,5 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const ModalEditProduct = (props) => {
 
@@ -11,22 +12,44 @@ const ModalEditProduct = (props) => {
     };
 
     const dataProductInit = {
-        name: "",
-        description: "",
-        price: 0,
+        nombre: "",
+        descripcion: "",
+        precio: 0,
     };
 
     const [dataProduct, setDataProduct] = useState(dataProductInit);
 
+    const getProduct = async () => {
+        const response = await axios.get(`${apiUrl}/productos/${props.id}`, config);
+        console.log(response)
+        setDataProduct({
+            nombre: response.data.nombre,
+            descripcion: response.data.descripcion,
+            precio: response.data.precio
+        });
+    }
+
+    useEffect(() => {
+        getProduct();
+    }, []);
+
     const handleChange = (e) => {
         //Actualizando el valor segun propiedad y valor que proviende del input
-        setDataProduct({
-            ...dataProduct,
-            [e.target.name]: e.target.value
-        });
     };
 
-    return (        
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const response = await axios.put(`${apiUrl}/productos/${props.id}`, dataProduct, config)
+        .then((e) => {
+            console.log(e);
+        }).catch((error) => {
+            console.log(e);
+        })
+        props.setShowModal(false);
+        props.getAllProducts()
+    }
+
+    return (
         <>
             <div
                 className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
@@ -50,29 +73,44 @@ const ModalEditProduct = (props) => {
                         {/*body*/}
                         <div className="flex items-center justify-center w-full dark:bg-gray-950">
                             <section className="text-gray-400 bg-gray-900 body-font relative">
-                                <div className="container px-5 py-24 mx-auto">
+                                <div className="container px-1 py-2 mx-auto">
                                     <div className="flex flex-col text-center w-full mb-12">
                                         <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">Agregar producto</h1>
                                         <p className="lg:w-2/3 mx-auto leading-relaxed text-base">Ingresa a continuacion tus datos para agregar un producto</p>
                                     </div>
-                                    <form className="lg:w-1/2 md:w-2/3 mx-auto">
+                                    <form className="lg:w-1/2 md:w-2/3 mx-auto" onSubmit={handleSubmit}>
                                         <div className="flex flex-wrap -m-2">
                                             <div className="p-2 w-1/2">
                                                 <div className="relative">
                                                     <label htmlFor="name" className="leading-7 text-sm text-gray-400">Nombre</label>
-                                                    <input type="text" id="name" name="name" className="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:bg-gray-900 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" onChange={handleChange} placeholder="Ingresar el nombre del producto" required />
+                                                    <input type="text" id="name" name="name" value={dataProduct.nombre} className="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:bg-gray-900 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" onChange={(e) => {
+                                                        setDataProduct({
+                                                            ...dataProduct,
+                                                            nombre: e.target.value
+                                                        })
+                                                    }} placeholder="Ingresar el nombre del producto" required />
                                                 </div>
                                             </div>
                                             <div className="p-2 w-1/2">
                                                 <div className="relative">
                                                     <label htmlFor="email" className="leading-7 text-sm text-gray-400">Precio</label>
-                                                    <input type="number" id="price" name="price" className="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:bg-gray-900 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" onChange={handleChange} placeholder="00.00" required />
+                                                    <input type="number" id="price" name="price" value={dataProduct.precio} className="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:bg-gray-900 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" onChange={(e) => {
+                                                        setDataProduct({
+                                                            ...dataProduct,
+                                                            precio: e.target.value
+                                                        })
+                                                    }} placeholder="00.00" required />  
                                                 </div>
                                             </div>
                                             <div className="p-2 w-full">
                                                 <div className="relative">
                                                     <label htmlFor="message" className="leading-7 text-sm text-gray-400">Descripción</label>
-                                                    <textarea id="description" name="description" className="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:bg-gray-900 focus:ring-2 focus:ring-indigo-900 h-32 text-base outline-none text-gray-100 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out" onChange={handleChange} placeholder="Ingresar la descripción del producto" required />
+                                                    <textarea id="description" name="description" value={dataProduct.descripcion} className="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:bg-gray-900 focus:ring-2 focus:ring-indigo-900 h-32 text-base outline-none text-gray-100 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out" onChange={(e) => {
+                                                        setDataProduct({
+                                                            ...dataProduct,
+                                                            descripcion: e.target.value
+                                                        })
+                                                    }} placeholder="Ingresar la descripción del producto" required />
                                                 </div>
                                             </div>
                                             <div className="p-2 w-full">
