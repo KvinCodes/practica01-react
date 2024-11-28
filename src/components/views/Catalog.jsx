@@ -48,7 +48,7 @@ const Catalog = () => {
       name: 'Eliminar',
       selector: row => <div onClick={() => {
         deleteProduct(row.id);
-      }}>Eliminar producto <FontAwesomeIcon icon={faTrash} />Eliminar</div>,
+      }} className="cursor-pointer hover:text-red-500"><FontAwesomeIcon icon={faTrash} /></div>,
     },
   ];
 
@@ -136,10 +136,11 @@ const Catalog = () => {
       </div>
       {showModal && <ModalEditProduct id={id} setShowModal={setShowModal} getAllProducts={getAllProducts} />}
       {/* <DataTable */}
-      <DataTable>
+      <DataTable
         columns={columns}
         data={dataProducts}
-      </DataTable>
+        pagination
+      />
     </section>
   );
 };
