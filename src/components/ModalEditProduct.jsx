@@ -35,6 +35,7 @@ const ModalEditProduct = (props) => {
 
     const handleChange = (e) => {
         //Actualizando el valor segun propiedad y valor que proviende del input
+        setDataProduct({...dataProduct, [e.target.name]: e.target.value});
     };
 
     const handleSubmit = async (e) => {
