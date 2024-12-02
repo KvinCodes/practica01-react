@@ -2,38 +2,53 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
     return (
-        <header className="bg-gray-800">
-            <nav className="container mx-auto px-6 py-3">
-                <div className="flex items-center justify-between">
-                    <div className="text-white font-bold text-xl">
-                        <a href="#">Logo</a>
+        <header className="pb-6 bg-white lg:pb-0">
+            <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+                <nav className="flex items-center justify-between h-16 lg:h-20">
+                    <div className="flex-shrink-0">
+                        <a href="#" title="" className="flex">
+                            <img className="w-auto h-8 lg:h-10" src="https://cdn.rareblocks.xyz/collection/celebration/images/logo.svg" alt="" />
+                        </a>
                     </div>
-                    <div className="hidden md:block">
-                        <ul className="flex items-center space-x-8">
-                            <li><Link className="text-white" to={"/"}>Home</Link></li>
-                            <li><Link className="text-white" to={"/about"}>About</Link></li>
-                            <li><Link className="text-white" to={"/catalog"}>Catalog</Link></li>
-                            <li><Link className="text-white" to={"/contact"}>Contact</Link></li>
-                        </ul>
-                    </div>
-                    <div className="md:hidden">
-                        <button className="outline-none mobile-menu-button">
-                            <svg className="w-6 h-6 text-white" x-show="!showMenu" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-                                <path d="M4 6h16M4 12h16M4 18h16"></path>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-                <div className="mobile-menu hidden md:hidden">
-                    <ul className="mt-4 space-y-4">
-                        <li><Link className="block px-4 py-2 text-white bg-gray-900 rounded" to={"/"}>Home</Link></li>
-                        <li><Link className="block px-4 py-2 text-white bg-gray-900 rounded" to={"/about"}>About</Link></li>
-                        <li><Link className="block px-4 py-2 text-white bg-gray-900 rounded" to={"/catalog"}>Catalog</Link></li>
-                        <li><Link className="block px-4 py-2 text-white bg-gray-900 rounded" to={"/contact"}>Contact</Link></li>
-                    </ul>
-                </div>
 
-            </nav>
+                    <button type="button" className="inline-flex p-2 text-black transition-all duration-200 rounded-md lg:hidden focus:bg-gray-100 hover:bg-gray-100">
+
+                        <svg className="block w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+                        </svg>
+
+                        <svg className="hidden w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+
+                    <div className="hidden lg:flex lg:items-center lg:ml-auto lg:space-x-10">
+                        <Link to={"/"} className="text-base font-medium text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"> Home </Link>
+
+                        <Link to={"/about"} className="text-base font-medium text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"> About </Link>
+
+                        <Link to={"/catalog"} className="text-base font-medium text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"> Catalog </Link>
+
+                        <Link to={"/contact"} className="text-base font-medium text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"> Contact </Link>
+                    </div>
+
+                </nav>
+
+                <nav className="pt-4 pb-6 bg-white border border-gray-200 rounded-md shadow-md lg:hidden">
+                    <div className="flow-root">
+                        <div className="flex flex-col px-6 -my-2 space-y-1">
+                            <Link to={"/"} className="inline-flex py-2 text-base font-medium text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"> Home </Link>
+
+                            <Link to={"/about"} className="inline-flex pFy-2 text-base font-medium text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"> About </Link>
+
+                            <Link to={"/catalog"} className="inline-flex py-2 text-base font-medium text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"> Catalog </Link>
+
+                            <Link to={"/contact"} className="inline-flex py-2 text-base font-medium text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"> Contact </Link>
+                        </div>
+                    </div>
+
+                </nav>
+            </div>
         </header>
     );
 };
