@@ -1,70 +1,63 @@
-# Getting Started with Create React App
+# CRUD de Productos con React y Backend en PHP
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto implementa un CRUD de productos utilizando React para el frontend y PHP para el backend. Se conecta a una base de datos MySQL a través de una API (`api.php`) y utiliza diversas herramientas y bibliotecas modernas para mejorar la funcionalidad y el estilo.
 
-## Available Scripts
+## Características
 
-In the project directory, you can run:
+- **Frontend**: React con Tailwind CSS.
+- **Backend**: API en PHP (`api.php`) utilizando XAMPP como servidor local.
+- **Base de datos**: MySQL con la tabla `productosdb`.
+- **Visualización de datos**: Uso de `react-data-table-component` para mostrar una tabla de productos.
+- **Rutas**: Configuración de rutas internas con React Router.
+- **CRUD**: Crear, leer, actualizar y eliminar productos.
 
-### `npm start`
+## Requisitos previos
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Antes de comenzar, asegúrate de tener instalado lo siguiente:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [Node.js](https://nodejs.org) (incluye npm)
+- [XAMPP](https://www.apachefriends.org/)
+- Un navegador compatible con ES6+
 
-### `npm test`
+## Instalación
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Backend
 
-### `npm run build`
+1. Instala y configura XAMPP.
+2. Copia el archivo `api.php` en el directorio `htdocs` de XAMPP.
+3. Crea una base de datos llamada `productosdb` en phpMyAdmin y configura la tabla según sea necesario.
+4. Asegúrate de que Apache y MySQL estén corriendo desde el panel de control de XAMPP.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Frontend
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Clona este repositorio:
+   ```bash
+   git clone https://github.com/KvinCodes/practica01-react.git
+   cd practica01-react
+   
+2. Instala las dependencias:
+   ```bash
+   npm install
+3. Ejecutar el servidor de desarrollo:
+   ```bash
+   npm start
+Esto abrirá la aplicación en http://localhost:3000/
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Configuración del Backend
 
-### `npm run eject`
+3. Subir la API a XAMPP:
+   1. Copia el archivo (`api.php`) dentro de la carpeta htdocs en tu instalación de XAMPP.
+   2. Asegúrate de que el servidor Apache esté en ejecución.
+  
+4. Crear la base de datos:
+   1. Abre phpMyAdmin (generalmente en http://localhost/phpmyadmin).
+   2. Importa el archivo productosdb.sql que se encuentra en la carpeta backend/
+  
+## Uso del CRUD
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Accede al frontend en `http://localhost:3000/catalog`.
+2. Existen dos tablas, ambas muestran los productos obtenidos desde la base de datos.
+3. Usa las opciones disponibles para:
+   1. Crear un nuevo producto.
+   2. Editar un producto existente.
+   3. Eliminar un producto.
